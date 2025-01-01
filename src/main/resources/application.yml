@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: credit-server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/credit-db?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+credit-server:
+  version: 1 # 1 or 2
