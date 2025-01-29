@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  k6-deduct:
+    image: grafana/k6:latest
+    volumes:
+      - ./scripts/deduct-credit.js:/script.js:ro
+    command: run /script.js
+    networks:
+      - performance-test
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '2'
+          memory: 2G
+    cpuset: "4-5"
+
+  k6-get:
+    image: grafana/k6:latest
+    volumes:
+      - ./scripts/get-credit.js:/script.js:ro
+    command: run /script.js
+    networks:
+      - performance-test
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '2'
+          memory: 2G
+    cpuset: "4-5"
+
+networks:
+  performance-test:
+    name: performance-test
